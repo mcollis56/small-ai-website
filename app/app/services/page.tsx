@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import CalendlyWidget from '../../components/calendly-widget';
-import PaymentWidget from '../../components/payment-widget';
 import {
   Bot,
   MessageSquare,
