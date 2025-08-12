@@ -1,14 +1,25 @@
 'use client';
 import { useState } from 'react';
 import ContactForm from '../../components/contact-form';
-import CalendlyWidget from '../../components/calendly-widget';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
+
+// This is a simple component to embed the cal.com widget
+const CalComWidget = ({ url }: { url: string }) => {
+  return (
+    <iframe
+      src={url}
+      style={{ width: '100%', height: '100vh', border: '0' }}
+      title="Schedule a meeting"
+    ></iframe>
+  );
+};
 
 const ContactPage = () => {
-  const [showCalendly, setShowCalendly] = useState(false);
+  const [showCalCom, setShowCalCom] = useState(false);
 
-  if (showCalendly) {
-    return <CalendlyWidget url="https://cal.com/mark-s28jyk/30min" />;
+  if (showCalCom) {
+    // We use the new CalComWidget component here
+    return <CalComWidget url="https://cal.com/mark-s28jyk/30min" />;
   }
 
   return (
@@ -20,7 +31,6 @@ const ContactPage = () => {
             Have a question or want to discuss a project? Fill out the form below or schedule a call.
           </p>
         </header>
-
         <div className="grid lg:grid-cols-2 gap-12">
           <div className="bg-[#1A1A1A] p-8 rounded-lg border border-white/10">
             <h2 className="text-2xl font-bold mb-6">Contact Form</h2>
@@ -46,7 +56,7 @@ const ContactPage = () => {
                 Book a 30-minute discovery call to discuss your business needs and see how AI can help.
               </p>
               <button
-                onClick={() => setShowCalendly(true)}
+                onClick={() => setShowCalCom(true)}
                 className="w-full bg-[#c96a3b] text-white py-3 px-4 rounded-full font-medium hover:opacity-90 transition-opacity"
               >
                 Schedule Now
